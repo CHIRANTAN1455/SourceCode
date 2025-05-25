@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>skout. Clone</title>
+  <title>skout.</title>
   <style>
     :root {
       /* Core palette */
       --yellow: #ffe600;
       --black: #222;
+      --white: white;
       --shadow: rgba(0, 0, 0, 0.1);
 
       /* Dynamic background variables */
@@ -19,8 +20,8 @@
       /* Section-specific backgrounds */
       --hero-bg: var(--yellow);      /* Blue */
       --features-bg: #788086;     /* Black */
-      --system-bg: #ffffff;    /* White */
-      --design-bg: #ffe600;    /* Yellow */
+      --system-bg: brown;    /* White */
+      --design-bg: pink;    /* Yellow */
       --crank-bg: #007BFF;     /* Blue */
       --season-bg: #222;       /* Black */
       --specs-bg: #ffffff;     /* White */
@@ -47,8 +48,16 @@
       padding: 1rem 2rem;
       background: var(--header-bg);
       z-index: 1000;
+      /* border-bottom: 1px solid #fff; */
+      border-bottom: none;                     /* no border at top */
+      transition: border-color 0.3s ease;      /* for smooth color changes */
     }
-    .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: -1px; }
+    /* when scrolled, add the border */
+    header.scrolled {
+      border-bottom: 4px solid currentColor;
+    }
+    .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: -1px;
+    color: var(--white) }
     nav {
       display: none;
       gap: 1.5rem;
@@ -56,7 +65,7 @@
     }
     nav a {
       text-decoration: none;
-      color: var(--black);
+      color: var(--white)
       font-weight: 600;
       font-size: 1rem;
     }
@@ -92,6 +101,7 @@
     .mobile-nav.open { transform: translateX(0); }
     .mobile-nav a { font-size: 1.5rem; margin: 1rem 0; text-decoration: none; color: var(--black); }
     main { padding-top: 6rem; }
+
     .hero {
       background: var(--hero-bg);
       display: flex;
@@ -100,6 +110,7 @@
       justify-content: center;
       height: calc(100vh - 6rem);
       text-align: center;
+      color: var(--black);
     }
     .hero img {
       width: 300px;
@@ -118,7 +129,7 @@
     .btn {
       padding: 1rem 2rem;
       background: var(--black);
-      color: var(--yellow);
+      color: var(--white);
       border: none;
       border-radius: 2rem;
       font-size: 1rem;
@@ -128,6 +139,7 @@
       transition: transform 0.2s, box-shadow 0.2s;
     }
     .btn:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 36px rgba(0,0,0,0.2); }
+
     .features {
       background: var(--features-bg);
       display: grid;
@@ -139,19 +151,27 @@
     .feature-item img { width: 80px; height: 80px; margin-bottom: 1rem; }
     .feature-item h3 { font-size: 1.2rem; margin-bottom: 0.5rem; font-weight: 600; }
     .feature-item p { font-size: 1rem; }
+
     .section {
       background: var(--section-bg);
       padding: 4rem 2rem;
-      max-width: 1000px;
+      width: 100%;
       margin: auto;
       text-align: center;
+    }
+    .section .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
     }
     #system { --section-bg: var(--system-bg); }
     #design { --section-bg: var(--design-bg); }
     #crank  { --section-bg: var(--crank-bg); }
     #season { --section-bg: var(--season-bg); }
     #specs  { --section-bg: var(--specs-bg); }
-    .section img { max-width: 100%; height: auto; margin-top: 1rem; }
+
+    .section img, .section video { max-width: 100%; height: auto; margin-top: 1rem; }
+
     .specs-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -165,6 +185,7 @@
       border-radius: 1rem;
       box-shadow: 0 4px 16px var(--shadow);
     }
+
     .newsletter {
       background: var(--newsletter-bg);
       color: var(--black);
@@ -181,13 +202,14 @@
       margin-right: 0.5rem;
       margin-bottom: 1rem;
     }
-    .newsletter .btn { background: var(--black); color: var(--yellow); }
+    /* .newsletter .btn { background: var(--black); color: var(--yellow); } */
     footer {
       background: var(--footer-bg);
       text-align: center;
       padding: 2rem;
       font-size: 0.9rem;
     }
+
     @media (min-width: 768px) {
       .menu-btn { display: none; }
       nav { display: flex; }
@@ -210,6 +232,7 @@
     </nav>
     <button class="menu-btn" id="menuBtn"><span></span></button>
   </header>
+
   <div class="mobile-nav" id="mobileNav">
     <a href="#hero">Home</a>
     <a href="#system">System</a>
@@ -217,59 +240,71 @@
     <a href="#crank">Crank</a>
     <a href="#season">Season</a>
     <a href="#features">Features</a>
-    <a href="#specs">Specs</a>  
+    <a href="#specs">Specs</a>
     <a href="#footer">Contact</a>
   </div>
+
   <main>
-    <section class="hero" id="hero">
+    <section class="hero" id="hero"
+      data-border-color="white">
       <img src="j2-Photoroom.png" alt="skout. console" />
       <h1>skout.</h1>
-      <p>A little yellow game console with a crank.</p>
-      <button class="btn">Join the Waitlist</button>
+      <p>A pioneering 1-inch tabletop.</p>
+      <button class="btn">Pre-order Now</button>
     </section>
-    <section class="features" id="features">
+
+    <section class="features" id="features"
+    data-border-color="white"
+    >
       <div class="feature-item">
         <img src="https://play.date/images/home/icon-crank.svg" alt="Crank Icon" />
         <h3>Hand Crank</h3>
-        <p>Unique crank controller for innovative gameplay.</p>
+        <p>Precision analog crank for uniquely tactile gameplay.</p>
       </div>
       <div class="feature-item">
         <img src="https://play.date/images/home/icon-seasonal.svg" alt="Seasonal Icon" />
         <h3>Seasonal Games</h3>
-        <p>Two new games delivered weekly for 12 weeks.</p>
+        <p>Two exclusive titles dropped weekly for 12 weeks—24 in total.</p>
       </div>
       <div class="feature-item">
         <img src="https://play.date/images/home/icon-battery.svg" alt="Battery Icon" />
         <h3>Long Battery Life</h3>
-        <p>Hours of play with a single charge.</p>
+        <p>Up to 10 hours of active play on a single charge.</p>
       </div>
       <div class="feature-item">
         <img src="https://play.date/images/home/icon-compact.svg" alt="Compact Icon" />
         <h3>Ultra Compact</h3>
-        <p>Lightweight and pocket-friendly design.</p>
+        <p>Tiny footprint, big wonder—fits on any desk or shelf.</p>
       </div>
     </section>
-    <section class="section" id="system">
-      <h2>The System</h2>
-      <p>skout. is familiar, but unlike anything you've ever seen. It has a very special black and white screen – not backlit, but super reflective – that looks way more amazing than you're probably imagining.</p>
-      <img src="tabletop1.png" alt="Exploded view of skout. internals">
-    </section>
+
     <section class="section" id="design">
       <h2>The Design</h2>
-      <p>Thanks to our friends at Teenage Engineering, skout. looks incredible. It's colorful, fits in your pocket, and the buttons feel perfectly clicky.</p>
+      <p>Crafted from premium materials, skout.’s minimalist curves and tactile buttons make it as much a chic desktop accent as it is a gaming console.</p>
       <img src="hand2-Photoroom.png" alt="Hand holding skout.">
     </section>
+
+    <section class="section" id="system">
+      <div class="container">
+      <h2>The System</h2>
+      <p>skout. packs a responsive microcontroller and crisp 1-bit display into a 1-inch frame—delivering clarity and speed in a supremely compact package.</p>
+      <img src="tabletop1.png" alt="Exploded view of skout. internals">
+      </div>
+
+    </section>
+
     <section class="section" id="crank">
       <h2>The Crank</h2>
-      <p>It's an analog controller that flips out from the side, allowing you to precisely dial in the action. Not every game uses it, but some really do!</p>
+      <p>Flip out the precision-machined crank to dial in gameplay with analog nuance. Perfect for puzzles, rhythm challenges, and more.</p>
       <video controls width="300">
         <source src="https://play.date/videos/crank-demo.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </section>
+
     <section class="section" id="season">
       <h2>The Season</h2>
-      <p>Receive two brand	new games each week for 12 weeks – 24 games in total, free with your skout.!</p>
+      <p>Experience a new wave of play: two handcrafted games arrive every week for 12 weeks, free with your skout. console.</p>
       <div class="features">
         <div class="feature-item"><h3>Crankin's Time Travel Adventure</h3></div>
         <div class="feature-item"><h3>Demon Quest '85</h3></div>
@@ -277,35 +312,63 @@
         <div class="feature-item"><h3>Executive Golf DX</h3></div>
       </div>
     </section>
+
     <section class="section" id="specs">
+       <div class="container">
       <h2>The Specs</h2>
       <div class="specs-grid">
-        <div><strong>Battery:</strong> 14 days standby, 8 hours active</div>
-        <div><strong>CPU:</strong> 168 MHz Cortex M7</div>
-        <div><strong>Storage:</strong> 16 MB RAM, 4 GB Flash</div>
-        <div><strong>Size:</strong> 76 × 74 × 9 mm</div>
-        <div><strong>Wireless:</strong> Wi-Fi, Bluetooth</div>
-        <div><strong>Display:</strong> 400 × 240, 1-bit</div>
+        <div><strong>Battery:</strong> 10 hr play, 14 days standby</div>
+        <div><strong>CPU:</strong> 120 MHz Cortex-M4</div>
+        <div><strong>Storage:</strong> 8 MB RAM, 2 GB Flash</div>
+        <div><strong>Size:</strong> 25 × 25 × 9 mm</div>
+        <div><strong>Wireless:</strong> Bluetooth LE</div>
+        <div><strong>Display:</strong> 128 × 128, 1-bit</div>
+      </div>
       </div>
     </section>
+
     <section class="newsletter">
       <h2>Stay in Touch!</h2>
-      <p>Sign up to get skout. news. Only the important stuff.</p>
+      <p>Sign up to get exclusive skout. updates—no spam, ever.</p>
       <form>
         <input type="email" placeholder="Email Address" required>
-        <button class="btn">Notify Me!</button>
+        <button class="btn">Sign Up</button>
       </form>
     </section>
   </main>
+
   <footer id="footer">
     &copy; 2025 skout., Inc. All rights reserved.
   </footer>
+
   <script>
     const menuBtn = document.getElementById('menuBtn');
     const mobileNav = document.getElementById('mobileNav');
     menuBtn.addEventListener('click', () => {
       menuBtn.classList.toggle('open');
       mobileNav.classList.toggle('open');
+    });
+    const header = document.querySelector('header');
+    const sections = document.querySelectorAll('section[data-border-color]');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // grab the desired border color…
+          const col = entry.target.dataset.borderColor;
+          // …and set it as the header's text color (thus border-color)
+          header.style.color = col;
+        }
+      });
+    }, {
+      threshold: 0.5
+    });
+    sections.forEach(sec => obs.observe(sec));
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 0) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
     });
   </script>
 </body>
