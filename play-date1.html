@@ -3,17 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Playdate Clone</title>
+  <title>skout. Clone</title>
   <style>
     :root {
+      /* Core palette */
       --yellow: #ffe600;
       --black: #222;
       --shadow: rgba(0, 0, 0, 0.1);
+
+      /* Dynamic background variables */
+      --body-bg: var(--yellow);
+      --header-bg: var(--yellow);
+      --nav-bg: var(--yellow);
+
+      /* Section-specific backgrounds */
+      --hero-bg: var(--yellow);      /* Blue */
+      --features-bg: #788086;     /* Black */
+      --system-bg: #ffffff;    /* White */
+      --design-bg: #ffe600;    /* Yellow */
+      --crank-bg: #007BFF;     /* Blue */
+      --season-bg: #222;       /* Black */
+      --specs-bg: #ffffff;     /* White */
+      --newsletter-bg: #ffffff;/* White */
+      --footer-bg: #ffe600;    /* Yellow */
     }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--yellow);
+      background: var(--body-bg);
       color: var(--black);
       overflow-x: hidden;
     }
@@ -26,13 +45,14 @@
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
-      background: var(--yellow);
+      background: var(--header-bg);
       z-index: 1000;
     }
     .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: -1px; }
     nav {
       display: none;
       gap: 1.5rem;
+      background: var(--nav-bg);
     }
     nav a {
       text-decoration: none;
@@ -60,7 +80,7 @@
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100vh;
-      background: var(--yellow);
+      background: var(--nav-bg);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -73,6 +93,7 @@
     .mobile-nav a { font-size: 1.5rem; margin: 1rem 0; text-decoration: none; color: var(--black); }
     main { padding-top: 6rem; }
     .hero {
+      background: var(--hero-bg);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -108,6 +129,7 @@
     }
     .btn:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 36px rgba(0,0,0,0.2); }
     .features {
+      background: var(--features-bg);
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 2rem;
@@ -117,10 +139,18 @@
     .feature-item img { width: 80px; height: 80px; margin-bottom: 1rem; }
     .feature-item h3 { font-size: 1.2rem; margin-bottom: 0.5rem; font-weight: 600; }
     .feature-item p { font-size: 1rem; }
-    footer { text-align: center; padding: 2rem; font-size: 0.9rem; }
-
-    /* Additional Section Styles */
-    .section { padding: 4rem 2rem; max-width: 1000px; margin: auto; text-align: center; }
+    .section {
+      background: var(--section-bg);
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
+    #system { --section-bg: var(--system-bg); }
+    #design { --section-bg: var(--design-bg); }
+    #crank  { --section-bg: var(--crank-bg); }
+    #season { --section-bg: var(--season-bg); }
+    #specs  { --section-bg: var(--specs-bg); }
     .section img { max-width: 100%; height: auto; margin-top: 1rem; }
     .specs-grid {
       display: grid;
@@ -136,7 +166,7 @@
       box-shadow: 0 4px 16px var(--shadow);
     }
     .newsletter {
-      background: #fff;
+      background: var(--newsletter-bg);
       color: var(--black);
       padding: 2rem 2rem;
       text-align: center;
@@ -152,6 +182,12 @@
       margin-bottom: 1rem;
     }
     .newsletter .btn { background: var(--black); color: var(--yellow); }
+    footer {
+      background: var(--footer-bg);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+    }
     @media (min-width: 768px) {
       .menu-btn { display: none; }
       nav { display: flex; }
@@ -161,7 +197,7 @@
 </head>
 <body>
   <header>
-    <div class="logo">playdate</div>
+    <div class="logo">skout.</div>
     <nav>
       <a href="#hero">Home</a>
       <a href="#system">System</a>
@@ -181,14 +217,13 @@
     <a href="#crank">Crank</a>
     <a href="#season">Season</a>
     <a href="#features">Features</a>
-    <a href="#specs">Specs</a>
+    <a href="#specs">Specs</a>  
     <a href="#footer">Contact</a>
   </div>
   <main>
     <section class="hero" id="hero">
-      <!-- <img src="https://play.date/images/home/playdate-hero.png" alt="Playdate console" /> -->
-      <img src="j2-Photoroom.png" alt="Playdate console" />
-      <h1>playdate</h1>
+      <img src="j2-Photoroom.png" alt="skout. console" />
+      <h1>skout.</h1>
       <p>A little yellow game console with a crank.</p>
       <button class="btn">Join the Waitlist</button>
     </section>
@@ -216,13 +251,13 @@
     </section>
     <section class="section" id="system">
       <h2>The System</h2>
-      <p>Playdate is familiar, but unlike anything you've ever seen. It has a very special black and white screen – not backlit, but super reflective – that looks way more amazing than you're probably imagining.</p>
-      <img src="tabletop1.png" alt="Exploded view of Playdate internals">
+      <p>skout. is familiar, but unlike anything you've ever seen. It has a very special black and white screen – not backlit, but super reflective – that looks way more amazing than you're probably imagining.</p>
+      <img src="tabletop1.png" alt="Exploded view of skout. internals">
     </section>
     <section class="section" id="design">
       <h2>The Design</h2>
-      <p>Thanks to our friends at Teenage Engineering, Playdate looks incredible. It's colorful, fits in your pocket, and the buttons feel perfectly clicky.</p>
-      <img src="hand2-Photoroom.png" alt="Hand holding Playdate">
+      <p>Thanks to our friends at Teenage Engineering, skout. looks incredible. It's colorful, fits in your pocket, and the buttons feel perfectly clicky.</p>
+      <img src="hand2-Photoroom.png" alt="Hand holding skout.">
     </section>
     <section class="section" id="crank">
       <h2>The Crank</h2>
@@ -234,7 +269,7 @@
     </section>
     <section class="section" id="season">
       <h2>The Season</h2>
-      <p>Receive two brand	new games each week for 12 weeks – 24 games in total, free with your Playdate!</p>
+      <p>Receive two brand	new games each week for 12 weeks – 24 games in total, free with your skout.!</p>
       <div class="features">
         <div class="feature-item"><h3>Crankin's Time Travel Adventure</h3></div>
         <div class="feature-item"><h3>Demon Quest '85</h3></div>
@@ -255,7 +290,7 @@
     </section>
     <section class="newsletter">
       <h2>Stay in Touch!</h2>
-      <p>Sign up to get Playdate news. Only the important stuff.</p>
+      <p>Sign up to get skout. news. Only the important stuff.</p>
       <form>
         <input type="email" placeholder="Email Address" required>
         <button class="btn">Notify Me!</button>
@@ -263,7 +298,7 @@
     </section>
   </main>
   <footer id="footer">
-    &copy; 2025 Playdate, Inc. All rights reserved.
+    &copy; 2025 skout., Inc. All rights reserved.
   </footer>
   <script>
     const menuBtn = document.getElementById('menuBtn');
